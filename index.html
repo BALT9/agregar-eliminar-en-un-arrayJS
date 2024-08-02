@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>tareas</h1>
+    <div>
+        <input type="text" name="" id="nueva_tarea" value="">
+        <button onclick="agregarNuevo()">agregar</button>
+    </div>
+
+    <ul id="lista_tareas">
+        <li>Valor por defecto</li>
+    </ul>
+
+    
+
+    <script>
+        let listado_tareas = [];
+        function agregarNuevo(){
+            // alert("hola");
+            let nuevaTarea = document.getElementById('nueva_tarea').value;
+            if(nuevaTarea){
+                listado_tareas.push(nuevaTarea)
+                listarTareas()
+            }
+        }
+        function listarTareas(){
+            const listaT = document.getElementById('lista_tareas')
+            listaT.innerHTML = ""
+            listado_tareas.forEach((tarea,posicion)=>{
+                listaT.innerHTML = listaT.innerHTML + `
+                    <li>${tarea} <button onClick="eliminarTarea(${posicion})">x</button></li>
+
+                `
+            })
+        }
+
+        function eliminarTarea(pos){
+            listado_tareas.splice(pos,1)
+            listarTareas()
+        }
+        listarTareas()
+    </script>
+</body>
+</html>
